@@ -51,43 +51,6 @@ O sistema é voltado para uso interno do pet shop, permitindo que o administrado
 - Bootstrap 
 
 
-## Estrutura do Projeto
-
-```
-src/
-├── br/trcs/petshop/
-│ ├── dao/
-│ │ ├── AdminDAO.java
-│ │ ├── SchedulingDAO.java
-│ │ └── ...
-│ ├── logic/
-│ │ ├── AuthAdmin.java
-│ │ ├── DeleteScheduling.java
-│ │ ├── ...
-│ ├── model/
-│ │ ├── Admin.java
-│ │ ├── Scheduling.java
-│ │ ├── Service.java
-│ │ └── ...
-│ ├── utils/
-│ │ ├── Consts.java
-│ │ └── ConnectionFactory.java
-│ └── enums/
-│ └── SchedulingStatus.java
-└── webapp/
-├── css/
-│ ├── form.css
-│ └── global.css
-├── jsp/
-│ ├── login.jsp
-│ ├── show-not-finished-scheduling.jsp
-│ └── ...
-├── img/
-│ └── favicon.ico
-└── WEB-INF/
-└── web.xml
-```
-
 ## Configuração do Ambiente
 
 ### Banco de Dados
