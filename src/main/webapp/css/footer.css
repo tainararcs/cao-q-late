@@ -1,0 +1,32 @@
+@charset "UTF-8";
+@import url("global.css");
+
+footer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	width: 100%;
+	background-color: #e3d7bf;
+	color: #2e2a26;
+	padding: 20px;
+	font-family: "Montserrat", sans-serif;
+	margin-top: 60px;
+}
+
+.footer-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+.petshop {
+ 	font-size: 15px;
+}
+
+.dev {
+	font-size: 11px;
+	margin-top: 8px;
+}

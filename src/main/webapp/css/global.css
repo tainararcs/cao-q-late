@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+:root {
+  --gold: #d4af37;
+  --black: #1a1a1a;
+  --white: #ffffff;
+  --gray: #f7f7f7;
+  --gradient-neutral: #fbf9f7;
+}
+
+/* Mensagens de Feedback */
+.feedback {
+    position: fixed; /* Fixa na tela, não rola com o conteúdo */
+    top: 20px;
+    left: 50%; /* Começa no centro horizontal */
+    transform: translateX(-50%) translateY(-20px); /* Centraliza e move para cima para a animação */
+    padding: 12px 30px;
+    border-radius: 8px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    font-weight: 500;
+    opacity: 0; 
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+    /* Configuração da Transição (Deve corresponder ao tempo do JS: 500ms) */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Ativa a animação */
+.feedback.show {
+    opacity: 1; /* Torna visível */
+    transform: translateX(-50%) translateY(0); 
+}
+
+.msg-error {
+    background-color: #f8d7da; 
+    color: #333333; 
+}
+
+.msg-success {
+    background-color: #e3d7bf; 
+    color: #333333; 
+}

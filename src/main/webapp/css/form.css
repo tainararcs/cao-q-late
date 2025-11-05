@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+@import url("global.css");
+
+/* Layout geral */
+body {
+	font-family: 'Poppins', sans-serif;
+	color: var(--black);
+	margin: 0;
+	padding: 0;
+	display: block;
+	
+}
+
+main {
+	min-height: 60vh;
+}
+
+h2 {
+	text-align: center;
+	color: #CFB53B;
+	margin-top: 50px;
+	letter-spacing: 1px;
+	font-size: 2.4rem;
+	font-weight: 600;
+	color: var(--gold);
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* Container do formulário */
+form {
+	width: 100%;
+	max-width: 650px;
+	margin: 0 auto;
+	padding: 20px;
+	display: block;
+	gap: 30px;
+}
+
+/* Campos */
+form div {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 15px;
+}
+
+label {
+	color: var(--black);
+	margin-bottom: 6px;
+	font-size: 1.05rem;
+}
+
+input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
+	border: 2px solid rgba(0, 0, 0, 0.1);
+	padding: 10px 14px;
+	border-radius: 12px;
+	font-size: 1rem;
+	transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus {
+	outline: none;
+	box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+}
+
+/* Botão de envio */
+input[type="submit"] {
+	background: #ecd47c;
+	color: var(--black);
+	font-weight: 550;
+	border: none;
+	padding: 12px;
+	border-radius: 12px;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+	background: var(--gold);
+	transform: translateY(-2px);
+	box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Radios e checkboxes */
+input[type="radio"], input[type="checkbox"] {
+	accent-color: #ecd47c;
+	transform: scale(1.2);
+	margin-right: 6px;
+}
+
+/* Ajuste de layout para listas */
+.size, .client {
+	margin-top: 10px;
+	line-height: 1.6;
+}
+
+
+/* Tabelas */
+table {
+    width: 70%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    font-size: 0.95rem;
+    text-align: left;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+thead {
+	background-color: #e6e6e6;
+    color: var(--black);
+    font-weight: 600;
+}
+
+th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+tr:hover {
+    background-color: #f2f2f2;
+    transition: background-color 0.3s ease;
+}
+
+/* Linha de total ou destaque */
+tr.total {
+    font-weight: 700;
+}
+
+td a {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+td a:hover {
+    text-decoration: underline;
+}

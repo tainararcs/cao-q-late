@@ -1,0 +1,181 @@
+@charset "UTF-8";
+
+@import url("global.css");
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', sans-serif;
+	color: var(--black);
+	overflow-x: hidden;
+	background: var(--gradient-neutral);
+	min-height: 100vh;
+}
+
+.title {
+	font-size: 4.5rem;
+	font-weight: 600;
+	color: var(--gold);
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	letter-spacing: 1px;
+	gap: 10px;
+	margin-top: 50px;
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.title .paw {
+	font-size: 3rem;
+	color: var(--gold);
+	margin-right: -10px;
+}
+
+/* Saudação*/
+h2 {
+	text-align: center;
+	font-weight: 500;
+	color: var(--black);
+	margin: 40px 0;
+}
+
+/* Ícone de Logout */
+.logout {
+	position: absolute;
+  	top: 30px;
+  	right: 38px;
+  	z-index: 1000;
+	background-color: var(--black);
+	color: var(--gold);
+	padding: 8px 18px;
+	border-radius: 50px;
+	font-size: 1.2rem;
+	transition: all 0.35s ease;
+	overflow: hidden;
+}
+
+.logout i {
+  vertical-align: middle;
+}
+
+/* Efeito de brilho dourado */
+.logout::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(212,175,55,0.4), transparent);
+  transition: all 0.6s ease;
+}
+
+.logout:hover::before {
+  left: 100%;
+}
+
+.logout:hover {
+  background-color: var(--gold);
+  color: var(--black);
+  transform: translateY(-2px);  
+}
+
+/* Container Principal */
+.main-container {
+	display: flex;
+	align-items: flex-start;
+	gap: 50px;
+	margin: auto;
+	max-width: 90vw;
+	padding: 10px;
+}
+
+/* Imagens */
+.image-container {
+	position: relative;
+	flex: 1;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	margin-left: 12%;
+	width: 100%;
+	max-width: 680px;
+	height: 520px;
+	overflow: hidden;
+	border-radius: 20px;
+  	perspective: 1000px;
+  	margin-top: 15px;
+}
+
+.image-background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(212, 175, 55, 0.1); /* Detalhe dourado */
+	border-radius: 20px;
+	z-index: 1;
+}
+
+.image-container img {
+	position: relative;
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 20px;
+	box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6); /* Sombra sólida */
+	transition: opacity 1s ease, transform 1s ease, box-shadow 0.3s ease;
+}
+
+.image-container img:hover {
+	transform: scale(1.03);
+	box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.options {
+	flex: 1;
+	display: flex;
+	align-items: flex-start;
+	margin-left: 6%; 
+}
+
+.options ul {
+	list-style: none; /* remove bolinhas */
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+
+.options li a {
+	text-decoration: none;
+	font-size: 1.3rem;
+	color: var(--black);
+	display: flex;
+	align-items: center;
+	gap: 10px; /* Espaço entre ícone e texto */
+	transition: all 0.35s ease;
+	position: relative;
+	padding: 2px 10px; /* Leve padding para zoom */
+	border-radius: 8px; /* Arredonda levemente ao hover */
+}
+
+.options li a:hover {
+	color: var(--gold);
+	transform: translateX(5px) scale(1.05); /* Leve zoom + deslocamento */
+}
+
+.options li a i {
+	font-size: 1.3rem;
+	color: var(--gold);
+	transition: transform 0.3s ease;
+}
+
+.options li a:hover i {
+	transform: translateX(3px);
+}
