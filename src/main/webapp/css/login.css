@@ -91,7 +91,7 @@ form.login {
   padding: 45px 50px;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  width: 23%;
+  width: 26%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -169,22 +169,11 @@ form.login input[type="submit"]:hover {
   transform: scale(1.08);
 }
 
-/* Mensagem de erro */
-p.error {
-	color: red;
-	font-weight: 500;
-	margin-bottom: 20px;
-	text-align: center;
-	position: absolute;
-	top: 10px;
-}
-
 .login-footer {
 	text-align: center;
 	margin-top: -5px;
 	padding-top: 24px;
 	border-top: 1px solid rgba(0, 0, 0, 0.06);
-	
 	color: var(--text-secondary);
 	font-size: 0.8125rem;
 	font-weight: 500;
@@ -193,7 +182,6 @@ p.error {
 	justify-content: center;
 	gap: 6px;
 }
-
 
 /* ----------- Responsive ----------- */
 @media (max-width: 400px) {
