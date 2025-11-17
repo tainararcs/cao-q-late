@@ -38,7 +38,7 @@ public class UpdateService implements Logic {
 		        return Consts.REDIRECT_HOME;
 			}
 		}
-		request.getSession().setAttribute(Consts.ERROR, "Erro ao alterar serviço.");
+		request.getSession().setAttribute(Consts.ERROR, "Erro ao alterar serviço");
 		return Consts.REDIRECT_UPDATE_SERVCICE;
 	}
 }

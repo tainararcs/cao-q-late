@@ -8,9 +8,10 @@ import java.util.List;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import br.trcs.petshop.dao.ClientDAO;
 import br.trcs.petshop.dao.SchedulingDAO;
 import br.trcs.petshop.enums.SchedulingStatus;
+import br.trcs.petshop.model.Client;
 import br.trcs.petshop.model.Scheduling;
 import br.trcs.petshop.utils.Consts;
 
@@ -32,12 +33,20 @@ public class AddScheduling implements Logic {
         LocalDate formattedDate = LocalDate.parse(date);
         
         SchedulingDAO dao = new SchedulingDAO();
+        
+        // Verifica se o cpf é válido.
+        cpfClient = cpfClient.trim();
+        Client client = new ClientDAO().findByCpf(cpfClient); 
+		if (client == null) {
+		    request.getSession().setAttribute(Consts.ERROR, "Cliente não encontrado");
+		    return Consts.REDIRECT_ADD_SCHEDULING; 
+		}
 
 	     // Verifica se a data está disponível.
-	     if (!dao.isDateAvailable(formattedDate)) {
-	         request.getSession().setAttribute(Consts.ERROR, "Data não disponível para novos agendamentos");
-	         return Consts.REDIRECT_ADD_SCHEDULING;  
-	     }
+	    if (!dao.isDateAvailable(formattedDate)) {
+	        request.getSession().setAttribute(Consts.ERROR, "Data não disponível para novos agendamentos");
+	        return Consts.REDIRECT_ADD_SCHEDULING;  
+	    }
      
         // Converte os IDs dos serviços selecionados.
         List<Integer> servicesList = new ArrayList<Integer>();

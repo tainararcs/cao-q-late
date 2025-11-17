@@ -30,7 +30,7 @@ public class ControllerServlet extends HttpServlet {
             if (logicParam != null && logicParam.endsWith(".jsp")) url = logicParam;
             
             else {
-                // Caso contrário, tenta carregar a classe normalmente
+                // Caso contrário, tenta carregar a classe normalmente.
                 String className = "br.trcs.petshop.logic." + logicParam; 
                 
                 // Carrega a classe dinamicamente.

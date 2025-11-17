@@ -49,6 +49,12 @@ public class AddClient implements Logic {
 		newClient.setPhoneNumber(phoneNumber);
 		
 		ClientDAO dao = new ClientDAO();		
+		
+		if (dao.findByCpf(cpf) != null) {
+			request.getSession().setAttribute(Consts.ERROR, "Cliente já cadastrado");
+            return Consts.REDIRECT_ADD_CLIENT;
+		}
+		
 		boolean created = dao.create(newClient);
 		
 	    if (created) {
