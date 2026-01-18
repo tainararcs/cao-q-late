@@ -1,17 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
+
 <html>
-  <head>
-    <meta charset="UTF-8">
-    
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" href="css/menu.css">
-  </head>
+ <head>
+   <meta charset="UTF-8">
   
+   <!-- Bootstrap Icons -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+   <link rel="stylesheet" type="text/css" href="css/menu.css">
+ </head>
   <body>
-  
     <header>
 	    <div class="logo"><span class="paw">🐾</span> Cão Q-Late</div>
 	
@@ -59,8 +58,7 @@
 				<li><a href="controller?logic=Logout" class="logout"><i class="bi bi-box-arrow-right"></i></a></li>
 	    	</ul>
 	  	</nav>
+ 	</header>
   
-	</header>
-    
-  </body>
+ </body>
 </html>

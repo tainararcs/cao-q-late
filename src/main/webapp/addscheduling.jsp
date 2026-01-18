@@ -10,16 +10,18 @@
 <%@page import="java.time.LocalDate"%>
 
 <%
-    // Carrega a lista de serviços.
-    ServiceDAO serviceDAO = new ServiceDAO();
-    request.setAttribute("servicesList", serviceDAO.list());
-
-    // Se o CPF foi enviado, busca os cães do cliente.
-    String cpf = request.getParameter("client");
-    if (cpf != null && !cpf.isEmpty()) {
-        ClientDAO clientDAO = new ClientDAO();
-        request.setAttribute("dogsList", clientDAO.listDogs(cpf));
-    }
+   // Carrega a lista de serviços.
+   ServiceDAO serviceDAO = new ServiceDAO();
+   request.setAttribute("servicesList", serviceDAO.list());
+   // Se o CPF foi enviado, busca os cães do cliente.
+   String cpf = request.getParameter("client");
+   if (cpf != null) {
+       cpf = cpf.trim();
+       if (!cpf.isEmpty()) {
+           ClientDAO clientDAO = new ClientDAO();
+           request.setAttribute("dogsList", clientDAO.listDogs(cpf));
+       }
+   }
 %>
 
 <!DOCTYPE html>
@@ -28,12 +30,12 @@
 	<head>
 	    <meta charset="UTF-8">
 	    <title>Cão Q-Late - Agendar Serviços</title>
-	    
+	   
 	    <link rel="icon" type="image/png" href="img/favicon.ico">
 	    <link rel="stylesheet" href="css/form.css">
 	</head>
 	<body>
-	    <c:import url="<%= Consts.MENU %>"/>		
+	    <c:import url="${Consts.MENU}"/>		
 		
 		<main>
 		    <h2>Agendamento de Serviços</h2>
@@ -52,7 +54,7 @@
 		    <!-- Só mostra o segundo formulário se houver cães -->
 		    <c:if test="${not empty dogsList}">
 		        <form method="post" action="controller">
-		            
+		           
 		            <!-- Lista de cães -->
 		            <div class="dogs">
 		                <label>Selecione o cão</label>
@@ -63,7 +65,7 @@
 		
 		            <div class="date">
 		                <label>Data do agendamento</label>
-		                <input type="date" name="date" required min="<%= LocalDate.now() %>" required">
+		                <input type="date" name="date" min="<%= LocalDate.now() %>" required>
 		            </div>
 		
 		            <!-- Serviços -->
@@ -76,13 +78,13 @@
 					
 					<!-- Preserva os dados do cliente para não enviar valor nulo -->
 		            <input type="hidden" name="client" value="${param.client}">
-		            
+		           
 		            <input type="hidden" name="logic" value="AddScheduling">
 		            <input type="submit" value="Agendar Serviço">
 		        </form>
 		    </c:if>
 	    </main>
-	    
-		<c:import url="<%= Consts.FOOTER %>"/>		
+	   
+		<c:import url="${Consts.FOOTER}"/>		
 	</body>
 </html>

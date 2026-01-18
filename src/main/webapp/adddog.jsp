@@ -6,15 +6,15 @@
 <%@ page import="br.trcs.petshop.enums.DogSize" %>
 
 <%
-    DogSize[] dogSizes = DogSize.values();
-    request.setAttribute("dogSizes", dogSizes);
-    
- 	// Se o CPF foi enviado, busca os cães do cliente.
-    String name = request.getParameter("name");
-    if (name != null && !name.isEmpty()) {
-        ClientDAO clientDAO = new ClientDAO();
-        request.setAttribute("clientList", clientDAO.list());
-    }
+   DogSize[] dogSizes = DogSize.values();
+   request.setAttribute("dogSizes", dogSizes);
+  
+	// Se o nome foi enviado, busca os cães do cliente.
+   String name = request.getParameter("name");
+   if (name != null && !name.isEmpty()) {
+       ClientDAO clientDAO = new ClientDAO();
+       request.setAttribute("clientList", clientDAO.list());
+   }
 %>
 
 <!DOCTYPE html>
@@ -29,11 +29,11 @@
 	</head>
 	
 	<body>		
-		<c:import url="<%= Consts.MENU %>"/>		
+		<c:import url="${Consts.MENU}"/>		
 		
 		<h2>Cadastrar Cão</h2>
 		
-		<jsp:include page="messages.jsp" />
+		<jsp:include page="messages.jsp"/>
 		
 		<form method="get" action="<%= Consts.ADD_DOG %>">
 			<div class="name">
@@ -83,6 +83,6 @@
 		    </form>
 		</c:if>
 		
-		<c:import url="<%= Consts.FOOTER %>"/>		
+		<c:import url="${Consts.FOOTER}"/>		
 	</body>
 </html>

@@ -35,8 +35,8 @@ public class AdminDAO {
 		try (PreparedStatement stm = connection.prepareStatement(sql)){
 			stm.setString(1, email);
 			stm.setString(2, password);
-			ResultSet result = stm.executeQuery();
 			
+			ResultSet result = stm.executeQuery();
 			if (result.next()) return true; // Login válido.
 			
 		} catch (SQLException e) {

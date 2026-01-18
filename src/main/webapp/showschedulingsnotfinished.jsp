@@ -3,22 +3,19 @@
 
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.util.*" %>
-
 <%@ page import="br.trcs.petshop.dao.SchedulingDAO" %>
 <%@ page import="br.trcs.petshop.utils.Consts" %>
 
 <%
-    String dateParam = request.getParameter("date");
-    List<Map<String, Object>> schedulingList = null;
-
-    if (dateParam != null && !dateParam.isEmpty()) {
-        LocalDate startDate = LocalDate.parse(dateParam);
-        SchedulingDAO dao = new SchedulingDAO();
-        schedulingList = dao.listNotFinishedFromDate(startDate);
-    }
-
-    request.setAttribute("schedulingList", schedulingList);
-    request.setAttribute("now", LocalDate.now());
+   String dateParam = request.getParameter("date");
+   List<Map<String, Object>> schedulingList = null;
+   if (dateParam != null && !dateParam.isEmpty()) {
+       LocalDate startDate = LocalDate.parse(dateParam);
+       SchedulingDAO dao = new SchedulingDAO();
+       schedulingList = dao.listNotFinishedFromDate(startDate);
+   }
+   request.setAttribute("schedulingList", schedulingList);
+   request.setAttribute("now", LocalDate.now());
 %>
 
 <!DOCTYPE html>
@@ -26,14 +23,14 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-    	<title>Cão Q-Late - Agendamentos não Finalizados</title>
-    	
-    	<link rel="icon" type="image/png" href="img/favicon.ico">
-    	<link rel="stylesheet" href="css/form.css">
+   	<title>Cão Q-Late - Agendamentos não Finalizados</title>
+   	
+   	<link rel="icon" type="image/png" href="img/favicon.ico">
+   	<link rel="stylesheet" href="css/form.css">
 	</head>
 		
 	<body>
-		<c:import url="<%= Consts.MENU %>"/>		
+		<c:import url="${Consts.MENU}"/>		
 		
 		<main>
 			<h2>Listar Agendamentos não Finalizados</h2>
@@ -69,6 +66,6 @@
 			</c:if>
 		</main>
 		
-		<c:import url="<%= Consts.FOOTER %>"/>		
+		<c:import url="${Consts.FOOTER}"/>	
 	</body>
 </html>

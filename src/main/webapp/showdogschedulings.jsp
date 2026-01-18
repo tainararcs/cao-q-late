@@ -2,27 +2,29 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page import="java.util.List" %>
-
 <%@ page import="br.trcs.petshop.utils.Consts" %>
 <%@ page import="br.trcs.petshop.model.Dog" %>
 <%@ page import="br.trcs.petshop.dao.ClientDAO" %>
 <%@ page import="br.trcs.petshop.dao.DogDAO" %>
 
-<%   
-    // Se o CPF foi enviado, busca os cães do cliente.
-    String cpf = request.getParameter("cpf");
-    if (cpf != null && !cpf.isEmpty()) {
-        ClientDAO clientDAO = new ClientDAO();
-        request.setAttribute("dogsList", clientDAO.listDogs(cpf));
-    }
-    
-    // Carrega a lista de serviços do cão se o parâmetro dog existir e não for vazio.
-    String dog = request.getParameter("dog");
-    if (dog != null && !dog.isEmpty()) {
-        Integer idDog = Integer.valueOf(dog);
-        DogDAO dogDAO = new DogDAO();
-        request.setAttribute("finishedList", dogDAO.listFinishedSchedulings(idDog));
-    }
+<%  
+   // Se o CPF foi enviado, busca os cães do cliente.
+   String cpf = request.getParameter("cpf");
+   if (cpf != null) {
+       cpf = cpf.trim();
+       if (!cpf.isEmpty()) {
+           ClientDAO clientDAO = new ClientDAO();
+           request.setAttribute("dogsList", clientDAO.listDogs(cpf));
+       }
+   }
+  
+   // Carrega a lista de serviços do cão se o parâmetro dog existir e não for vazio.
+   String dog = request.getParameter("dog");
+   if (dog != null && !dog.isEmpty()) {
+       Integer idDog = Integer.valueOf(dog);
+       DogDAO dogDAO = new DogDAO();
+       request.setAttribute("finishedList", dogDAO.listFinishedSchedulings(idDog));
+   }
 %>
 
 <!DOCTYPE html>
@@ -37,16 +39,16 @@
 	</head>
 	
 	<body>
-		<c:import url="<%= Consts.MENU %>"/>		
+		<c:import url="${Consts.MENU}"/>		
 		
 		<main>
 			<h2>Listar Agendamentos do Cão</h2>
 			
 			<!-- Formulário para buscar cães pelo CPF -->
 		    <form method="get" action="<%= Consts.SHOW_DOG_SCHEDULINGS %>">
-		        <div class="cpf"> 
+		        <div class="cpf">
 			        <label>CPF do cliente</label>
-					<input type="text" name="cpf" value="${param.cpf}" placeholder="123.456.789-00" required> 
+					<input type="text" name="cpf" value="${param.cpf}" placeholder="123.456.789-00" required>
 		        </div>
 		        <input type="submit" value="Buscar cães">
 		    </form>
@@ -63,10 +65,10 @@
 			                </label>
 			            </c:forEach>
 			        </div>
-			        
+			       
 			        <!-- Preserva o CPF para a próxima requisição -->
-                	<input type="hidden" name="cpf" value="${param.cpf}">
-                
+               	<input type="hidden" name="cpf" value="${param.cpf}">
+              
 			        <input type="submit" value="Selecionar cão">
 			    </form>
 			</c:if>
@@ -77,7 +79,7 @@
 			        <thead>
 			        	<tr><th>Data</th><th>Serviços</th><th>Preço do Serviço</th><th>Valor Bruto</th><th>Desconto</th><th>Valor Final</th></tr>
 			        </thead>
-			        
+			       
 			        <tbody>
 				        <c:forEach var="f" items="${finishedList}">
 		                    <tr>
@@ -94,6 +96,6 @@
 			</c:if>
 		</main>
 		
-	    <c:import url="<%= Consts.FOOTER %>"/>
+	    <c:import url="${Consts.FOOTER}"/>
 	</body>
 </html>

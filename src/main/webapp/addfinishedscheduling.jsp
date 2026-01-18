@@ -16,7 +16,7 @@
 	</head>
 	
 	<body>
-		<c:import url="<%= Consts.MENU %>"/>
+		<c:import url="${Consts.MENU}"/>
 		
 		<main>
 			<h2>Lançar Agendamento Finalizado</h2>
@@ -39,6 +39,6 @@
 			</form>
 		</main>
 		
-		<c:import url="<%= Consts.FOOTER %>"/>
+		<c:import url="${Consts.FOOTER}"/>
 	</body>
 </html>

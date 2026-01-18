@@ -4,129 +4,192 @@
 @import url("global.css");
 
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--gray);
-  color: var(--black);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  margin: 0;
+ font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+ background: radial-gradient(circle at 30% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+             radial-gradient(circle at 70% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+             var(--gray);
+ color: var(--text-primary);
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ height: 100vh;
+ margin: 0;
 }
 
 .title {
-  position: absolute;
-  top: 35px;
-  font-size: 6rem;
-  font-weight: 600;
-  color: var(--gold);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
-  letter-spacing: 1px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+ position: absolute;
+ top: 45px;
+ font-size: 6rem;
+ font-weight: 600;
+ color: var(--gold);
+ text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+ letter-spacing: 1px;
+ display: flex;
+ align-items: center;
+ gap: 10px;
+}
+/* Elementos flutuantes decorativos */
+.floating-shapes {
+   position: absolute;
+   inset: 0;
+   overflow: hidden;
+   pointer-events: none;
 }
 
+.shape {
+	position: absolute;
+	border-radius: 50%;
+	background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.25), rgba(255, 255, 255, 0.05));
+	backdrop-filter: blur(4px);
+	filter: blur(2px);
+	animation: floatModern 18s ease-in-out infinite;
+	transform-style: preserve-3d;
+	will-change: transform;
+}
 
+/* Tamanhos e posições iniciais */
+.shape:nth-child(1) {
+	width: 420px;
+	height: 420px;
+	top: -160px;
+	left: -100px;
+	animation-delay: 0s;
+}
+.shape:nth-child(2) {
+	width: 300px;
+	height: 300px;
+	bottom: -180px;
+	right: -60px;
+	animation-delay: -6s;
+}
+
+/* Nova animação moderna */
+@keyframes floatModern {
+	0%, 100% {
+		transform: translate3d(0, 0, 0) scale(1);
+		opacity: 0.85;
+	}
+	25% {
+		transform: translate3d(40px, -30px, 20px) scale(1.08) rotateZ(1deg);
+		opacity: 0.9;
+	}
+	50% {
+		transform: translate3d(-20px, 40px, -15px) scale(0.95) rotateZ(-1deg);
+		opacity: 0.8;
+	}
+	75% {
+		transform: translate3d(30px, 20px, 10px) scale(1.03);
+		opacity: 0.88;
+	}
+}
+      
 form.login {
-  background-color: var(--white);
-  padding: 45px 50px;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  width: 23%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  border-top: 5px solid var(--gold);
-  position: relative;
-  margin-top: 120px;
+ background-color: var(--white);
+ padding: 45px 50px;
+ border-radius: 16px;
+ box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+ width: 26%;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: 30px;
+ border-top: 5px solid var(--gold);
+ position: relative;
+ margin-top: 140px;
+}
+
+form.login label i {
+ color: var(--gold);
+ font-size: 1.1rem;
 }
 
 /* Elemento decorativo */
 form.login::before {
-  content: "🐾";
-  position: absolute;
-  top: -25px;
-  background-color: var(--white);
-  border: 2px solid var(--gold);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: var(--gold);
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+ content: "🐾";
+ position: absolute;
+ top: -25px;
+ background-color: var(--white);
+ border: 2px solid var(--gold);
+ border-radius: 50%;
+ width: 50px;
+ height: 50px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-size: 1.5rem;
+ color: var(--gold);
+ box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
 }
 
 /* Campos de input */
 form.login div {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+ display: flex;
+ flex-direction: column;
+ width: 100%;
 }
 
 form.login label {
-  font-weight: 500;
-  margin-bottom: 6px;
-  color: var(--black);
+ font-weight: 500;
+ margin-bottom: 6px;
+ color: var(--black);
 }
 
 form.login input[type="email"], form.login input[type="password"] {
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  font-size: 0.95rem;
+ padding: 12px;
+ border: 1px solid #ccc;
+ border-radius: 8px;
+ transition: all 0.3s ease;
+ font-size: 0.95rem;
 }
 
 form.login input[type="email"]:focus, form.login input[type="password"]:focus {
-  border-color: var(--gold);
-  outline: none;
-  box-shadow: 0 0 6px rgba(212, 175, 55, 0.4);
+ outline: none;
+ box-shadow: 0 0 6px rgba(212, 175, 55, 0.4);
 }
 
 /* Botão de envio */
 form.login input[type="submit"] {
-  background-color: var(--gold);
-  color: var(--white);
-  border: none;
-  padding: 12px 40px;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 10px;
+ background-color: var(--gold);
+ color: var(--white);
+ border: none;
+ padding: 12px 40px;
+ border-radius: 10px;
+ font-size: 1rem;
+ font-weight: 600;
+ letter-spacing: 0.5px;
+ cursor: pointer;
+ transition: all 0.3s ease;
+ margin-top: 10px;
 }
 
 form.login input[type="submit"]:hover {
-  transform: scale(1.08);
+ transform: scale(1.08);
 }
 
-/* Mensagem de erro */
-p.error {
-  color: red;
-  font-weight: 500;
-  margin-bottom: 20px;
-  text-align: center;
-  position: absolute;
-  top: 10px;
+.login-footer {
+	text-align: center;
+	margin-top: -5px;
+	padding-top: 24px;
+	border-top: 1px solid rgba(0, 0, 0, 0.06);
+	color: var(--text-secondary);
+	font-size: 0.8125rem;
+	font-weight: 500;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
 }
 
 /* ----------- Responsive ----------- */
 @media (max-width: 400px) {
-  form.login {
-    width: 90%;
-    padding: 30px 25px;
-  }
+ form.login {
+   width: 90%;
+   padding: 30px 25px;
+ }
 
-  .title {
-    font-size: 2rem;
-    top: 40px;
-  }
+ .title {
+   font-size: 2rem;
+   top: 40px;
+ }
 }

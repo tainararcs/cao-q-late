@@ -1,31 +1,38 @@
-# Cão Q-Late – Sistema de Agendamento para Pet Shop  
+# Cão Q-Late - Sistema de Agendamentos para Pet Shop  
 
-Aplicação web desenvolvida em **Java (JSP/Servlets)** utilizando o padrão **MVC**, voltada ao gerenciamento de **agendamentos, cães, clientes e serviços** em um pet shop.  
+O **Cão Q-Late** é um sistema web criado para simplificar o controle de **agendamentos e serviços** de um pet shop. Permite cadastrar, visualizar e cancelar atendimentos, respeitando regras de negócio como o prazo mínimo de 24h para cancelamentos.
 
+O foco é a **organização e praticidade**, com uma interface limpa, intuitiva e poucos clicks, e um backend sólido feito em **Java**.
 
-## Visão Geral
-
-O **Cão Q-Late** é um sistema web criado para simplificar o controle de **agendamentos e serviços** de um pet shop.  
-Permite cadastrar, visualizar e cancelar atendimentos, respeitando regras de negócio como o **prazo mínimo de 24h** para cancelamentos.
-
-O foco é a **organização e praticidade**, com uma interface limpa e intuitiva, e um backend sólido feito em **Java**.
+<p align="center"> <img src="assets/home.png" width="1000" alt="Tela inicial do sistema"> </p>
 
 
 ## Funcionalidades Principais
 
+O sistema é voltado para uso interno do pet shop, permitindo que o administrador tenha acesso a:
+
 **Autenticação de Administrador**  
-- Login seguro (senha com hash)  
-- Controle de sessão  
+- Login seguro (senha armazenada via hash)
+- Sessão autenticada com tempo de expiração configurável
+- Filtro AuthFilter protege todas as rotas
 
+**Cadastros e Controle de Dados**  
+- Cadastro de novos clientes e serviços
+- Associação de múltiplos cães por CPF
+  
 **Gerenciamento de Agendamentos**  
-- Cadastro de novos agendamentos  
-- Associação com cliente, cão e serviços  
-- Cancelamento permitido apenas até 24h antes  
-
+- Cadastro de serviços agendados
+- Cancelamento permitido apenas até 24h antes da data marcada
+- Exibição de agendamentos pendentes e finalizados
+  
 **Listagem Inteligente**  
-- Filtro por data inicial  
-- Exibe serviços agrupados por agendamento  
+- Listagem de lientes, cães e serviços agrupados por agendamento 
+- Listagem persoanlizada de agendamentos
 - Ícone de cancelamento com checagem automática  
+
+**Relatórios e Listagens**
+- Tabela dinâmica de agendamentos não finalizados
+- Exibição de serviços e valores concluídos por cão
 
 **Interface Amigável**  
 - Estilo moderno com **CSS personalizado**  
@@ -33,126 +40,38 @@ O foco é a **organização e praticidade**, com uma interface limpa e intuitiva
 - Ícones do **Bootstrap Icons**
 
 
-## Arquitetura e Tecnologias
-
-**Padrão Arquitetural:**  
-Modelo **MVC (Model-View-Controller)**
-
-**Tecnologias Principais:**
-- Java 22 
-- Jakarta Servlet / JSP  
-- JDBC + PgAdmin 9.6 + PSQL 17 
+## Tecnologias Principais e Requisitos:
+- Dynamic Web Project (Maven)
+- Arquitetura	MVC (Model–View–Controller)
+- Java 22
+- Apache Tomcat 10.1 (Jakarta EE 10)
+- JSP + JSTL (Jakarta 3.0.1)
+- PostgreSQL 17 (gerenciado pelo pgAdmin)
 - HTML5 / CSS3 / JS / JSTL  
-- Tomcat 10.1  
 - Bootstrap 
 
 
-## Estrutura do Projeto
-```
-src/
-├── br/trcs/petshop/
-│ ├── dao/
-│ │ ├── AdminDAO.java
-│ │ ├── SchedulingDAO.java
-│ │ └── ...
-│ ├── logic/
-│ │ ├── AuthAdmin.java
-│ │ ├── DeleteScheduling.java
-│ │ ├── ...
-│ ├── model/
-│ │ ├── Admin.java
-│ │ ├── Scheduling.java
-│ │ ├── Service.java
-│ │ └── ...
-│ ├── utils/
-│ │ ├── Consts.java
-│ │ └── ConnectionFactory.java
-│ └── enums/
-│ └── SchedulingStatus.java
-└── webapp/
-├── css/
-│ ├── form.css
-│ └── global.css
-├── jsp/
-│ ├── login.jsp
-│ ├── show-not-finished-scheduling.jsp
-│ └── ...
-├── img/
-│ └── favicon.ico
-└── WEB-INF/
-└── web.xml
-```
-
 ## Configuração do Ambiente
 
-### Requisitos
-- **Java JDK 17+**  
-- **Apache Tomcat 10+**  
-- **MySQL 8+**  
-- IDE Java (Eclipse, IntelliJ, NetBeans, etc.)
-
 ### Banco de Dados
+- Abra o pgAdmin
+- Crie um banco chamado caoqlate
+- Restaure o backup completo (caoqlate.backup) disponível na pasta database/
+*Edite ConnectionFactory se necessário*
 
-Execute o script SQL abaixo:
+### Configuração no Eclipse
 
-```sql
-CREATE DATABASE petshop;
-USE petshop;
-
-CREATE TABLE admin (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  email VARCHAR(100) NOT NULL,
-  password VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE schedulings (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  date DATE NOT NULL,
-  cpfclient VARCHAR(20),
-  iddog INT,
-  status VARCHAR(20)
-);
-
-CREATE TABLE services (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100),
-  price DECIMAL(10,2)
-);
-
-CREATE TABLE scheduling_services (
-  idscheduling INT,
-  idservice INT,
-  FOREIGN KEY (idscheduling) REFERENCES schedulings(id),
-  FOREIGN KEY (idservice) REFERENCES services(id)
-);
-```
-
-## Segurança e Hash de Senhas
-
-A senha do administrador não está em texto puro no código — é armazenada como hash simples.
-
-No banco de dados, a senha deve ser salva já em formato de hash:
-
-```
-INSERT INTO admin (email, password) VALUES ('admin@petshop.com', '1569984');
-```
-
-## Execução do Projeto
-
-Configure a conexão com o banco em ConnectionFactory.java:
-
-private static final String URL = "jdbc:mysql://localhost:3306/petshop";
-private static final String USER = "root";
-private static final String PASSWORD = "sua_senha";
-
-
-Inicie o servidor Tomcat
-Acesse no navegador: http://localhost:8080/CaoQLate/
+- Importe o projeto como Maven Project
+- Configure o Tomcat 10.1 no Eclipse
+- Adicione o projeto ao servidor
+- Inicie o servidor
+- Acesse no navegador: http://localhost:8080/CaoQLate/
 
 Faça login com o administrador cadastrado e explore as funcionalidades
 
-## Capturas de Tela (opcional)
-Tela	Descrição
-Login	Página de autenticação do administrador
-Agendamentos	Lista filtrável de agendamentos pendentes
-Cancelamento	Ícone de exclusão com validação de 24h
+## Login do Funcionário (Administrador)
+O login do funcionário (administrador) no sistema é realizado por meio do login e da senha. Há apenas um funcionário com permissão de acesso, que é inserido automaticamente no banco de dados durante a inicialização do sistema.
+
+| **Login**        | **Senha** |
+|------------------|-----------|
+| admin@gmail      | 3333      |

@@ -1,32 +1,146 @@
 @charset "UTF-8";
+
 @import url("global.css");
 
 footer {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	width: 100%;
-	background-color: #e3d7bf;
-	color: #2e2a26;
-	padding: 20px;
-	font-family: "Montserrat", sans-serif;
-	margin-top: 60px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   width: 100%;
+   background: linear-gradient(135deg,
+               rgba(227, 215, 191, 0.95) 0%,
+               rgba(235, 225, 205, 0.95) 100%);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   color: rgba(46, 42, 38, 0.9);
+   padding: 32px 20px;
+   font-family: "Poppins", sans-serif;
+   margin-top: 80px;
+   position: relative;
+   overflow: hidden;
+   box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.08);
+}
+
+footer::before {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   height: 3px;
+   background: var(--gradient-gold);
+   box-shadow: 0 2px 12px rgba(212, 175, 55, 0.4);
+}
+
+footer::after {
+   content: "";
+   position: absolute;
+   top: -100px;
+   right: -100px;
+   width: 300px;
+   height: 300px;
+   background: radial-gradient(circle,
+               rgba(212, 175, 55, 0.08) 0%,
+               transparent 70%);
+   border-radius: 50%;
+   pointer-events: none;
 }
 
 .footer-content {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 10px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 16px;
+   position: relative;
+   z-index: 1;
 }
 
 .petshop {
- 	font-size: 15px;
+   font-size: 0.95rem;
+   font-weight: 500;
+   line-height: 1.8;
+   letter-spacing: 0.3px;
+}
+
+.petshop p {
+   margin: 6px 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 10px;
+   transition: transform 0.3s ease;
+}
+
+.petshop p:hover {
+   transform: translateX(3px);
+}
+
+.petshop i {
+   font-size: 1.1rem;
+   transition: transform 0.3s ease;
+}
+
+.petshop p:hover i {
+   transform: scale(1.15);
+}
+
+.petshop strong {
+   color: var(--gold-dark);
+   font-weight: 700;
 }
 
 .dev {
-	font-size: 11px;
-	margin-top: 8px;
+   font-size: 0.82rem;
+   margin-top: 12px;
+   padding-top: 20px;
+   border-top: 1px solid rgba(212, 175, 55, 0.25);
+   color: rgba(46, 42, 38, 0.75);
+   font-weight: 500;
+   letter-spacing: 0.3px;
+   max-width: 600px;
+}
+
+.dev strong {
+   color: var(--gold-dark);
+   font-weight: 600;
+}
+
+/* Efeito de brilho sutil */
+@keyframes subtle-glow {
+   0%, 100% { opacity: 0.6; }
+   50% { opacity: 1; }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+   footer {
+       padding: 28px 20px;
+       margin-top: 60px;
+   }
+   .petshop {
+       font-size: 0.9rem;
+   }
+   .dev {
+       font-size: 0.78rem;
+       padding-top: 16px;
+   }
+}
+
+@media (max-width: 480px) {
+   footer {
+       padding: 24px 16px;
+   }
+   .petshop {
+       font-size: 0.85rem;
+   }
+   .petshop p {
+       flex-direction: column;
+       gap: 4px;
+   }
+   .dev {
+       font-size: 0.75rem;
+       line-height: 1.6;
+   }
 }

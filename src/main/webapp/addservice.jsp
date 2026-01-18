@@ -15,28 +15,28 @@
 	</head>
 	
 	<body>
-		<c:import url="<%= Consts.MENU %>"/>		
+		<c:import url="${Consts.MENU}"/>		
 		
 		<main>
 		 	<h2>Cadastrar Serviço</h2>
 		 	
-		 	<jsp:include page="messages.jsp" />
+		 	<jsp:include page="messages.jsp"/>
 		 	
 		 	<form method="post" action="controller">
 				<div class="name">
 					<label>Serviço</label>
-					<input type="text" name="name" required> 
+					<input type="text" name="name" required>
 				</div>
 				<div class="price">
 					<label>Preço (R$)</label>
-					<input type="text" name="price" placeholder="50.50" required> 
+					<input type="text" name="price" placeholder="50.50" required>
 				</div>
 				
-				<input type="hidden" name="logic" value="AddService"> 
+				<input type="hidden" name="logic" value="AddService">
 				<input type="submit" value="Registrar Serviço">
 			</form>
 		</main>
 		
-		<c:import url="<%= Consts.FOOTER %>"/>		
+		<c:import url="${Consts.FOOTER}"/>	
 	</body>
 </html>

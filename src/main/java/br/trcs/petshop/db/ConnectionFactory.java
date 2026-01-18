@@ -1,11 +1,22 @@
 package br.trcs.petshop.db;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Classe responsável por fornecer conexões com o banco de dados.
+ * <br>Essa classe implementa o padrão de projeto <b>Factory</b>, centralizando a criação e configuração de conexões JDBC. 
+ * <br>É utilizada em todas as classes DAO do sistema.
+ */
 public class ConnectionFactory {
 	
+	 /**
+     * Cria e retorna uma nova conexão JDBC com o banco PostgreSQL.
+     * 
+     * @return {@link java.sql.Connection} ativa com o banco de dados, ou {@code null} se a conexão falhar.
+     */
 	public static Connection getConnection() {	
 		try {
 			// Carrega o driver JDBC do PostgreSQL (necessário para aplicações web).

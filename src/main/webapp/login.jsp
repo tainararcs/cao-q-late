@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <%@ page import="br.trcs.petshop.utils.Consts" %>
 
-<jsp:include page="messages.jsp" />
+<jsp:include page="messages.jsp"/>
 
 <!DOCTYPE html>
-
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -17,21 +15,29 @@
 	</head>
 	
 	<body>
+		<!-- Elementos decorativos flutuantes -->
+	    <div class="floating-shapes">
+	        <div class="shape"></div>
+	        <div class="shape"></div>
+	    </div>
+	   
 		<h1 class="title">Cão Q-Late</h1>
 		
 		<form method="post" action="controller" class="login">
 			<div class="email">
-				<label for="email">E-mail</label>
+				<label for="email"><i class="bi bi-envelope-fill"></i> E-mail</label>
 				<input id="email" type="email" name="email" required>
 			</div>
 		
 			<div class="password">
-				<label for="password">Senha</label>
+				<label for="password"><i class="bi bi-lock-fill"></i> Senha</label>
 				<input id="password" type="password" name="password" required>
 			</div>
 			
 			<input type="hidden" name="logic" value="AuthAdmin">
 			<input type="submit" value="Login">
+			
+			<div class="login-footer">Sistema de Gestão</div>
 		</form>
 	</body>
 </html>

@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<jsp:include page="messages.jsp" />
+<%@ page import="br.trcs.petshop.utils.Consts" %>
+
+<jsp:include page="messages.jsp"/>
 
 <!DOCTYPE html>
-
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -35,7 +36,6 @@
 			    <img id="dog-image" src="img/dogs1.jpg" alt="Cachorro">
 			    <img id="dog-image" src="img/dogs2.jpg" alt="Cachorro">
 			</div>
-
 		
 		    <nav class="options">
 		        <ul>
@@ -46,7 +46,7 @@
 					<li><a href="controller?logic=redirect:addservice.jsp"><i class="bi bi-clipboard-check"></i> Cadastrar Serviço</a></li>
 					<li><a href="controller?logic=redirect:listservices.jsp"><i class="bi bi-list-ul"></i> Listar serviços</a></li>
 					<li><a href="controller?logic=redirect:updateservice.jsp"><i class="bi bi-pencil-square"></i> Alterar Serviço</a></li>
-					<li><a href="controller?logic=redirect:addscheduling.jsp"><i class="bi bi-calendar-plus"></i> Cadastrar Agendamentos</a></li>
+					<li><a href="controller?logic=redirect:addscheduling.jsp"><i class="bi bi-calendar-plus"></i> Cadastrar Agendamento</a></li>
 					<li><a href="controller?logic=redirect:addfinishedscheduling.jsp"><i class="bi bi-calendar-check"></i> Finalizar Agendamento</a></li>
 					<li><a href="controller?logic=redirect:showdogschedulings.jsp"><i class="bi bi-list-ul"></i> Listar Agendamentos do Cão</a></li>
 					<li><a href="controller?logic=redirect:showschedulingsnotfinished.jsp"><i class="bi bi-clock-history"></i> Listar Agendamentos não Finalizados</a></li>
@@ -55,6 +55,6 @@
 		    </nav>
 		</div>
 		
-		<c:import url="footer.jsp"/>
+		<c:import url="${Consts.FOOTER}"/>
 	</body>
 </html>

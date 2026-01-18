@@ -5,9 +5,9 @@
 <%@ page import="br.trcs.petshop.dao.ServiceDAO" %>
 
 <%
-    // Carrega a lista de serviços.
-    ServiceDAO serviceDAO = new ServiceDAO();
-    request.setAttribute("servicesList", serviceDAO.list());
+   // Carrega a lista de serviços.
+   ServiceDAO serviceDAO = new ServiceDAO();
+   request.setAttribute("servicesList", serviceDAO.list());
 %>
 
 <!DOCTYPE html>
@@ -15,21 +15,21 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-    	<title>Cão Q-Late - Serviços Cadastrados</title>
-    	
-    	<link rel="icon" type="image/png" href="img/favicon.ico">
-    	<link rel="stylesheet" href="css/form.css">
+   	<title>Cão Q-Late - Serviços Cadastrados</title>
+   	
+   	<link rel="icon" type="image/png" href="img/favicon.ico">
+   	<link rel="stylesheet" href="css/form.css">
 	</head>
 	
 	<body>
-		<c:import url="<%= Consts.MENU %>"/>
+		<c:import url="${Consts.MENU}"/>
 		
 		<main>
 			<h2>Lista de Serviços Cadastrados</h2>
 			
 			<!-- Serviços -->
-            <div class="services">
-            	<c:if test="${not empty servicesList}">
+           <div class="services">
+           	<c:if test="${not empty servicesList}">
 	            	<table>
 	            		<thead>
 	            			<tr><th>ID do serviço</th><th>Nome</th><th>Preço (R$)</th></tr>
@@ -40,10 +40,10 @@
 			                </c:forEach>
 	                	</tbody>
 	            	</table>
-            	</c:if>
-            </div>
+           	</c:if>
+           </div>
 		</main>
 		
-		<c:import url="<%= Consts.FOOTER %>"/>
+		<c:import url="${Consts.FOOTER}"/>
 	</body>
 </html>

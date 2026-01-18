@@ -3,26 +3,26 @@
 
 <%@ page import="java.util.*"%>
 <%@ page import="java.math.BigDecimal"%>
-
 <%@ page import="br.trcs.petshop.utils.Consts" %>
 <%@ page import="br.trcs.petshop.model.Report"%>
 
 <!DOCTYPE html>
+
 <html>
 	<head>
 	    <meta charset="UTF-8">
 	    <title>Cão Q-Late - Relatório de Serviços Prestados</title>
-	    
+	   
 	    <link rel="icon" type="image/png" href="img/favicon.ico">
 	    <link rel="stylesheet" href="css/form.css">
 	</head>
 	
 	<body>
-		<c:import url="<%= Consts.MENU %>"/>		
+		<c:import url="${Consts.MENU}"/>		
 		
 		<main>
 		    <h2>Relatório de Serviços Prestados</h2>
-		    
+		   
 		    <jsp:include page="messages.jsp"/>
 		
 		    <form method="get" action="controller">
@@ -45,7 +45,7 @@
 	                <thead>
 	                    <tr><th>Data</th><th>Cliente</th><th>Cachorro</th><th>Serviço</th><th>Preço (R$)</th></tr>
 	                </thead>
-	                
+	               
 	                <tbody>
 	                    <!-- Itera sobre cada relatório -->
 	                    <c:forEach var="report" items="${reportList}">
@@ -66,6 +66,6 @@
 	        </c:if>
 		</main>
 		
-		<c:import url="<%= Consts.FOOTER %>"/>		
+		<c:import url="${Consts.FOOTER}"/>	
 	</body>
 </html>

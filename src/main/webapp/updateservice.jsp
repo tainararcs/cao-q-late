@@ -7,8 +7,8 @@
 <%
 String name = request.getParameter("name");
 if (name != null && !name.isEmpty()) {
-    br.trcs.petshop.dao.ServiceDAO dao = new br.trcs.petshop.dao.ServiceDAO();
-    pageContext.setAttribute("service", dao.findByName(name));
+   br.trcs.petshop.dao.ServiceDAO dao = new br.trcs.petshop.dao.ServiceDAO();
+   pageContext.setAttribute("service", dao.findByName(name));
 }
 %>
 
@@ -18,14 +18,14 @@ if (name != null && !name.isEmpty()) {
 	<head>
 	    <meta charset="UTF-8">
 	    <title>Cão Q-Late - Alterar Serviço</title>
-	    
+	   
 	    <link rel="icon" type="image/png" href="img/favicon.ico">
 	    <link rel="stylesheet" href="css/form.css">
 	</head>
 	
 	<body>
-	    <c:import url="<%= Consts.MENU %>"/>		
-	    
+	    <c:import url="${Consts.MENU}"/>		
+	   
 	    <main>
 		    <h2>Alterar Serviços Prestados</h2>
 			
@@ -57,6 +57,6 @@ if (name != null && !name.isEmpty()) {
 		    </c:if>
 		</main>
 		
-	    <c:import url="<%= Consts.FOOTER %>"/>		
+	    <c:import url="${Consts.FOOTER}"/>		
 	</body>
 </html>

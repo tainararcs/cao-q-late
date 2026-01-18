@@ -39,7 +39,7 @@ public class AuthAdmin implements Logic {
 			// Cria a sessão e define o tempo máximo.
 	        var session = request.getSession();
 	        session.setAttribute("admin", admin);
-	        session.setMaxInactiveInterval(2200); // DEVE SER 120 segundos = 2 minutos de inatividade.
+	        session.setMaxInactiveInterval(120); // 120 segundos = 2 minutos de inatividade.
 	        
 			return Consts.REDIRECT_HOME; 
 		}
