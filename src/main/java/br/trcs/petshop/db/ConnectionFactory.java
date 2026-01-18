@@ -14,7 +14,7 @@ public class ConnectionFactory {
 			/* Retorna uma conexão com o banco de dados.
 			 * Parâmetros: URL do banco, nome de usuário e senha.
 			 */
-			return DriverManager.getConnection("jdbc:postgresql://localhost:5432/caoqlate", "postgres", "49999");
+			return DriverManager.getConnection("jdbc:postgresql://postgres-db:5432/caoqlate", "postgres", "postgres");
 		} 
 		// Erro ao carregar o driver JDBC.
 		catch (ClassNotFoundException e) {
