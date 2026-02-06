@@ -20,7 +20,7 @@
 		<main>
 			<h2>${Consts.LIST_CLIENTS_TITLE}</h2>
 			
-			<jsp:include page="${Consts.MENU_JSP}"/>
+			<jsp:include page="${Consts.MESSAGES_JSP}"/>
 			
            	<div class="clients">
 				<c:if test="${not empty clientsList}">
