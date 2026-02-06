@@ -24,8 +24,8 @@ public class AuthAdmin implements Logic {
 		
 		// Validação básica.
 	    if (email == null || password == null || email.isBlank() || password.isBlank()) {
-	        request.setAttribute(Consts.ERROR, "Preencha todos os campos");
-	        return Consts.REDIRECT_HOME;
+	        request.setAttribute(Consts.ERROR, Consts.FIELDS_ERROR);
+	        return Consts.LOGIN_JSP;
 	    }
 	    
 	    AdminDAO dao = new AdminDAO();
@@ -36,24 +36,25 @@ public class AuthAdmin implements Logic {
 			admin.setEmail(email);
 			admin.setPasswordHash(password);
 			
-			// Cria a sessão e define o tempo máximo.
+			// Cria a sessão, armazena o usuário logado e define o tempo máximo.
 	        var session = request.getSession();
 	        session.setAttribute("admin", admin);
-	        session.setMaxInactiveInterval(120); // 120 segundos = 2 minutos de inatividade.
+	        session.setMaxInactiveInterval(120); // 120 segundos de inatividade.
 	        
-			return Consts.REDIRECT_HOME; 
+			return Consts.REDIRECT_HOME_JSP; 
 		}
 		
 		// Falha e volta para login com mensagem de erro.
-        request.getSession().setAttribute(Consts.ERROR, "E-mail ou senha incorretos"); 
-        return Consts.REDIRECT_LOGIN;
+        request.setAttribute(Consts.ERROR, Consts.LOGIN_ERROR); 
+        return Consts.LOGIN_JSP;
     }
 	
 	/**
-     * Criptografa (de forma simples) a senha informada. Utiliza o {@link String#hashCode()}.
+     * Criptografa (de forma simples) a senha informada. 
+     * Utiliza o {@link String#hashCode()}.
      * 
-     * @param password senha original digitada pelo usuário
-     * @return valor hash da senha
+     * @param password senha original digitada pelo usuário.
+     * @return valor hash da senha.
      */
 	private String encryptPassword(String password) {
 		return String.valueOf(password.hashCode());

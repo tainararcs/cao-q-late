@@ -61,8 +61,8 @@ public class AddFinishedScheduling implements Logic {
 			
 			// Verifica se o agendamento já foi finalizado.
 			if (finishedDAO.searchSchedulingId(idScheduling)) {
-			    request.getSession().setAttribute(Consts.ERROR, "Agendamento já finalizado");
-			    return Consts.REDIRECT_ADD_FINISHED_SCHEDULING; 
+			    request.setAttribute(Consts.ERROR, Consts.SCHEDULING_ALREADY_FINALIZED_ERROR);
+			    return Consts.ADD_FINISHED_SCHEDULING_JSP; 
 			}
 			
 			FinishedScheduling newFinished = new FinishedScheduling();
@@ -77,13 +77,14 @@ public class AddFinishedScheduling implements Logic {
 			if (created) {
 				// Atualiza o status do agendamento para "Finalizado".
 			    schedulingDAO.updateStatus(idScheduling, SchedulingStatus.FINISHED);
-			    
-		        request.getSession().setAttribute(Consts.MSG, "Agendamento finalizado cadastrado com sucesso");
-		        return Consts.REDIRECT_HOME;
+		        request.setAttribute(Consts.MSG, Consts.ADD_FINISHED_SCHEDULING_SUCCESS);
 		    } 
+			else 
+				request.setAttribute(Consts.ERROR, Consts.ADD_FINISHED_SCHEDULING_ERROR);
 		}
-        
-		request.getSession().setAttribute(Consts.ERROR, "Erro ao cadastrar agendamento finalizado");
-        return Consts.REDIRECT_ADD_FINISHED_SCHEDULING;
+		else
+			request.setAttribute(Consts.ERROR, Consts.SCHEDULING_NOT_FOUND_ERROR);
+		
+        return Consts.ADD_FINISHED_SCHEDULING_JSP;
     }
 }

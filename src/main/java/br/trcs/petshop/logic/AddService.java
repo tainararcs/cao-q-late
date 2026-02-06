@@ -30,18 +30,17 @@ public class AddService implements Logic {
 		
 		// Verifica se já existe um serviço cadastrado com o mesmo nome.
 		if (dao.findByName(name) != null) {
-			request.getSession().setAttribute(Consts.ERROR, "Serviço já cadastrado");
-	        return Consts.REDIRECT_ADD_SERVICE;
+			request.setAttribute(Consts.ERROR, Consts.SERVICE_ALREADY_ADDED_ERROR);
+	        return Consts.ADD_SERVICE_JSP;
 		}
 		
 		boolean created = dao.create(newService);
 		
-		if (created) {
-	        request.getSession().setAttribute(Consts.MSG, "Serviço cadastrado com sucesso");
-	        return Consts.REDIRECT_HOME;
-	    } 
-        
-		request.getSession().setAttribute(Consts.ERROR, "Erro ao cadastrar serviço");
-        return Consts.REDIRECT_ADD_SERVICE;
+		if (created) 
+	        request.setAttribute(Consts.MSG, Consts.ADD_SERVICE_SUCCESS);
+		else 
+			request.setAttribute(Consts.ERROR, Consts.ADD_SERVICE_ERROR);
+		
+        return Consts.ADD_SERVICE_JSP;
 	}
 }

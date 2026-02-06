@@ -27,6 +27,6 @@ public class Logout implements Logic {
         }
         
         // Redireciona para a página de login com parâmetro indicando logout bem-sucedido.
-        return Consts.REDIRECT_LOGIN + "?logout=true";
+        return Consts.REDIRECT_LOGIN_JSP + "?logout=true";
     }
 }

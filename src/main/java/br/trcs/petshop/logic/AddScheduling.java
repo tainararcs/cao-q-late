@@ -26,7 +26,7 @@ public class AddScheduling implements Logic {
 	public String service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
         String date = request.getParameter("date");
-        String cpfClient = request.getParameter("client");
+        String cpf = request.getParameter("cpf");
         int idDog = Integer.parseInt(request.getParameter("dog"));
         String[] selectedServices = request.getParameterValues("service"); // Lista de checkboxes selecionados.
 
@@ -34,18 +34,19 @@ public class AddScheduling implements Logic {
         
         SchedulingDAO dao = new SchedulingDAO();
         
+        cpf = cpf.trim();
+        Client client = new ClientDAO().findByCpf(cpf); 
+        
         // Verifica se o cpf é válido.
-        cpfClient = cpfClient.trim();
-        Client client = new ClientDAO().findByCpf(cpfClient); 
 		if (client == null) {
-		    request.getSession().setAttribute(Consts.ERROR, "Cliente não encontrado");
-		    return Consts.REDIRECT_ADD_SCHEDULING; 
+		    request.setAttribute(Consts.ERROR, Consts.CLIENT_NOT_FOUND_ERROR);
+		    return Consts.ADD_SCHEDULING_JSP; 
 		}
 
 	     // Verifica se a data está disponível.
 	    if (!dao.isDateAvailable(formattedDate)) {
-	        request.getSession().setAttribute(Consts.ERROR, "Data não disponível para novos agendamentos");
-	        return Consts.REDIRECT_ADD_SCHEDULING;  
+	        request.setAttribute(Consts.ERROR, Consts.DATE_ERROR);
+	        return Consts.ADD_SCHEDULING_JSP;  
 	    }
      
         // Converte os IDs dos serviços selecionados.
@@ -53,11 +54,10 @@ public class AddScheduling implements Logic {
         if (selectedServices != null) 
             for (String service : selectedServices) 
                 servicesList.add(Integer.parseInt(service));
-
         
         Scheduling newScheduling = new Scheduling();
         newScheduling.setDate(formattedDate);
-        newScheduling.setCpfClient(cpfClient);
+        newScheduling.setCpfClient(cpf);
         newScheduling.setIdDog(idDog);
         newScheduling.setIdServicesList(servicesList);
         newScheduling.setStatus(SchedulingStatus.SCHEDULED);
@@ -65,11 +65,12 @@ public class AddScheduling implements Logic {
         boolean created = dao.create(newScheduling);
 
         if (created) {
-            request.getSession().setAttribute(Consts.MSG, "Agendamento cadastrado com sucesso");
-            return Consts.REDIRECT_HOME;
-        } 
-
-        request.getSession().setAttribute(Consts.ERROR, "Erro ao cadastrar o agendamento");
-        return Consts.REDIRECT_ADD_SCHEDULING;  
+            request.getSession().setAttribute(Consts.MSG, Consts.ADD_SCHEDULING_SUCCESS);
+            request.removeAttribute("dogsList");
+        }
+        else 
+        	request.getSession().setAttribute(Consts.ERROR, Consts.ADD_SCHEDULING_ERROR);
+        
+        return Consts.REDIRECT_ADD_SCHEDULING_JSP;  
     }
 }

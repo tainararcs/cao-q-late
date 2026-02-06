@@ -33,12 +33,14 @@ public class UpdateService implements Logic {
 		if (service != null) {
 			boolean update = dao.update(service, newPrice);
 		
-			if (update) {
-		        request.getSession().setAttribute(Consts.MSG, "Serviço alterado com sucesso!");
-		        return Consts.REDIRECT_HOME;
-			}
+			if (update) 
+		        request.setAttribute(Consts.MSG, Consts.UPDATE_SERVICE_SUCCESS);
+			else
+				request.setAttribute(Consts.ERROR, Consts.UPDATE_SERVICE_ERROR);
 		}
-		request.getSession().setAttribute(Consts.ERROR, "Erro ao alterar serviço");
-		return Consts.REDIRECT_UPDATE_SERVCICE;
+		else 
+			request.setAttribute(Consts.ERROR, Consts.SERVICE_NOT_FOUND_ERROR);
+		
+		return Consts.UPDATE_SERVICE_JSP;
 	}
 }

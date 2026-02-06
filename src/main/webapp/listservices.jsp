@@ -2,48 +2,51 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page import="br.trcs.petshop.utils.Consts" %>
-<%@ page import="br.trcs.petshop.dao.ServiceDAO" %>
-
-<%
-   // Carrega a lista de serviços.
-   ServiceDAO serviceDAO = new ServiceDAO();
-   request.setAttribute("servicesList", serviceDAO.list());
-%>
 
 <!DOCTYPE html>
 
 <html>
 	<head>
 		<meta charset="UTF-8">
-   	<title>Cão Q-Late - Serviços Cadastrados</title>
-   	
-   	<link rel="icon" type="image/png" href="img/favicon.ico">
-   	<link rel="stylesheet" href="css/form.css">
+	   	<title>Cão Q-Late - ${Consts.LIST_SERVICES_TITLE}</title>
+	   	
+	   	<link rel="icon" type="image/png" href="img/favicon.ico">
+	   	<link rel="stylesheet" href="css/form.css">
 	</head>
 	
 	<body>
-		<c:import url="${Consts.MENU}"/>
+		<jsp:include page="${Consts.MENU_JSP}"/>
 		
 		<main>
-			<h2>Lista de Serviços Cadastrados</h2>
+			<h2>${Consts.LIST_SERVICES_TITLE}</h2>
 			
-			<!-- Serviços -->
-           <div class="services">
-           	<c:if test="${not empty servicesList}">
-	            	<table>
-	            		<thead>
-	            			<tr><th>ID do serviço</th><th>Nome</th><th>Preço (R$)</th></tr>
-	            		</thead>
-	            		<tbody>
-			            	<c:forEach var="s" items="${servicesList}">
-			            		<tr><td>${s.id}</td><td>${s.name}</td><td>${s.price}</td></tr>
-			                </c:forEach>
-	                	</tbody>
-	            	</table>
-           	</c:if>
-           </div>
+			<jsp:include page="${Consts.MENU_JSP}"/>
+			
+			<div class="services">
+				<c:if test="${not empty servicesList}">
+					<table>
+						<thead>
+							<tr>
+								<th>ID do serviço</th>
+								<th>Nome</th>
+								<th>Preço (R$)</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+						 	<c:forEach var="s" items="${servicesList}">
+							<tr>
+								<td>${s.id}</td>
+								<td>${s.name}</td>
+								<td>${s.price}</td>
+							</tr>
+						  </c:forEach>
+					   	</tbody>
+					</table>
+				</c:if>
+            </div>
 		</main>
 		
-		<c:import url="${Consts.FOOTER}"/>
+		<jsp:include page="${Consts.FOOTER_JSP}"/>
 	</body>
 </html>

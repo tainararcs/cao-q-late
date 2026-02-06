@@ -46,12 +46,12 @@ public class ShowReport implements Logic {
                 request.setAttribute("end", endParam);
     	    } 
     	    else {
-    	    	request.getSession().setAttribute(Consts.ERROR, "Nenhum agendamento finalizado no período informado");
-    	        return Consts.REDIRECT_SHOW_REPORT;
+    	    	request.getSession().setAttribute(Consts.ERROR, Consts.DATE_FINALIZE_SCHEDULING_ERROR);
+    	        return Consts.REDIRECT_SHOW_REPORT_JSP;
     	    }
         }
         
         // Retorna ao formulário.
-        return Consts.SHOW_REPORT;
+        return Consts.SHOW_REPORT_JSP;
     }
 }

@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * Servlet Controller principal da aplicação PetShop. Responsável por direcionar requisições para a lógica correspondente.
  * <br>O controlador delega dinamicamente a execução para a classe lógica correspondente, com base no parâmetro recebido da requisição HTTP via interface ({@link Logic}).
  */
-@WebServlet("/controller")
+@WebServlet("/" + Consts.CONTROLLER)
 public class ControllerServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -23,7 +23,7 @@ public class ControllerServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String logicParam = request.getParameter("logic");
-        String url = Consts.LOGIN; // Página padrão para fallback. 
+        String url = Consts.LOGIN_JSP; // Página padrão para fallback. 
 
         try {
             // Se o parâmetro terminar com ".jsp", apenas encaminha.

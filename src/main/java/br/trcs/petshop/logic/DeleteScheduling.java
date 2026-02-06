@@ -19,12 +19,9 @@ public class DeleteScheduling implements Logic {
     @Override
     public String service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-    	// Obtém o parâmetro ID enviado pelo formulário.
     	String idParam = request.getParameter("id");
-    	// Recupera a data da URL para manter a tabela visível.
-    	String dateParam = request.getParameter("date"); 
+    	String dateParam = request.getParameter("date"); // Recupera a data da URL para manter a tabela visível.
         
-    	// Verifica se o parâmetro foi informado e não está vazio.
         if (idParam != null && !idParam.isEmpty()) {
             int idScheduling = Integer.parseInt(idParam);
             SchedulingDAO dao = new SchedulingDAO();
@@ -33,8 +30,8 @@ public class DeleteScheduling implements Logic {
             Scheduling scheduling = dao.findById(idScheduling);
 
             if (scheduling == null) {
-                request.getSession().setAttribute(Consts.ERROR, "Agendamento não encontrado");
-                return Consts.REDIRECT_SHOW_NOT_FINISHED_SCHEDULING;
+                request.getSession().setAttribute(Consts.ERROR, Consts.SCHEDULING_NOT_FOUND_ERROR);
+                return Consts.REDIRECT_LIST_NOT_FINISHED_SCHEDULING_JSP;
             }
 
             LocalDate schedulingDate = scheduling.getDate();
@@ -44,21 +41,21 @@ public class DeleteScheduling implements Logic {
                 boolean success = dao.delete(idScheduling);
                 
                 if (success) {
-                	request.getSession().setAttribute(Consts.MSG, "Agendamento cancelado com sucesso");
+                	request.getSession().setAttribute(Consts.MSG, Consts.DELETE_SCHEDULING_SUCCESS);
                     
                     // Retorna ao formulário mantendo a data para continuar mostrando a tabela.
-                    return Consts.SHOW_NOT_FINISHED_SCHEDULING + "?date=" + dateParam;
+                    return Consts.LIST_NOT_FINISHED_SCHEDULING_JSP + "?date=" + dateParam;
                 }
-            	request.getSession().setAttribute(Consts.ERROR, "Falha ao cancelar agendamento");
-                return Consts.REDIRECT_SHOW_NOT_FINISHED_SCHEDULING;
+            	request.getSession().setAttribute(Consts.ERROR, Consts.DELETE_SCHEDULING_ERROR);
+                return Consts.REDIRECT_LIST_NOT_FINISHED_SCHEDULING_JSP;
             
             } else {
-                request.setAttribute(Consts.ERROR, "Não é possível cancelar agendamentos com menos de 24h de antecedência");
-                return Consts.REDIRECT_SHOW_NOT_FINISHED_SCHEDULING;
+                request.setAttribute(Consts.ERROR, Consts.DATE_DELETE_SCHEDULING_ERROR);
+                return Consts.REDIRECT_LIST_NOT_FINISHED_SCHEDULING_JSP;
             }
         }
 
-        request.getSession().setAttribute(Consts.ERROR, "Nenhum ID de agendamento informado");
-        return Consts.REDIRECT_SHOW_NOT_FINISHED_SCHEDULING;
+        request.getSession().setAttribute(Consts.ERROR, Consts.DELETE_SCHEDULING_ERROR);
+        return Consts.REDIRECT_LIST_NOT_FINISHED_SCHEDULING_JSP;
     }
-}
+} 

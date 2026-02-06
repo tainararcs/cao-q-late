@@ -2,6 +2,7 @@ package br.trcs.petshop.filter;
 
 import java.io.IOException;
 
+import br.trcs.petshop.utils.Consts;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -69,14 +70,14 @@ public class AuthFilter implements Filter {
      * Verifica se é ação de autenticação.
      */
     private boolean isAuthAction(String logic) {
-        return "AuthAdmin".equals(logic);
+        return Consts.AUTH_ADMIN_LOGIC.equals(logic);
     }
     
     /**
      * Verifica se é ação de logout.
      */
     private boolean isLogoutAction(String logic) {
-        return "Logout".equals(logic);
+        return Consts.LOGOUT_LOGIC.equals(logic);
     }
     
     /**
@@ -105,7 +106,7 @@ public class AuthFilter implements Filter {
      * Trata acesso negado: redireciona para login.
      */
     private void handleAccessDenied(HttpServletResponse response) throws IOException {
-        System.out.println("\nAcesso negado - sessão expirada ou não autenticado");
+        System.out.println("\nAcesso negado - sessão expirada ou não autenticado\n");
         response.sendRedirect("login.jsp?expired=true");
     }
 }

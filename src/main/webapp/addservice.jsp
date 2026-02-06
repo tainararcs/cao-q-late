@@ -8,35 +8,36 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Cão Q-Late - Cadastrar Serviço</title>
+		<title>Cão Q-Late - ${Consts.ADD_SERVICE_TITLE}</title>
 		
 		<link rel="icon" type="image/png" href="img/favicon.ico">
 		<link rel="stylesheet" href="css/form.css">
 	</head>
 	
 	<body>
-		<c:import url="${Consts.MENU}"/>		
+		<jsp:include page="${Consts.MENU_JSP}"/>
 		
 		<main>
-		 	<h2>Cadastrar Serviço</h2>
+		 	<h2>${Consts.ADD_SERVICE_TITLE}</h2>
 		 	
-		 	<jsp:include page="messages.jsp"/>
+		 	<jsp:include page="${Consts.MESSAGES_JSP}"/>
 		 	
-		 	<form method="post" action="controller">
+		 	<form method="post" action="${Consts.CONTROLLER}">
 				<div class="name">
 					<label>Serviço</label>
 					<input type="text" name="name" required>
 				</div>
+				
 				<div class="price">
 					<label>Preço (R$)</label>
 					<input type="text" name="price" placeholder="50.50" required>
 				</div>
 				
-				<input type="hidden" name="logic" value="AddService">
-				<input type="submit" value="Registrar Serviço">
+				<input type="hidden" name="logic" value="${Consts.ADD_SERVICE_LOGIC}">
+				<input type="submit" value="${Consts.ADD_BUTTON}">
 			</form>
 		</main>
 		
-		<c:import url="${Consts.FOOTER}"/>	
+		<jsp:include page="${Consts.FOOTER_JSP}"/>
 	</body>
 </html>

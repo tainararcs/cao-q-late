@@ -27,28 +27,27 @@ public class AddDog implements Logic {
 		String size = request.getParameter("size");
 		String cpfClient = request.getParameter("client");
 
-		Dog newDog = new Dog();;
+		Dog newDog = new Dog();
 		newDog.setName(name);
 		newDog.setBreed(breed);
-		newDog.setSize(DogSize.fromLabel(size));
+		newDog.setSize(DogSize.valueOf(size));
 		newDog.setCpfClient(cpfClient);
 		
 		DogDAO dao = new DogDAO();		
 		Client client = new ClientDAO().findByCpf(cpfClient); 
 
 		if (client == null) {
-		    request.getSession().setAttribute(Consts.ERROR, "Cliente não encontrado");
-		    return Consts.REDIRECT_ADD_DOG; 
+		    request.setAttribute(Consts.ERROR, Consts.CLIENT_NOT_FOUND_ERROR);
+		    return Consts.ADD_DOG_JSP; 
 		}
 		
 		boolean created = dao.create(newDog);
 
-	    if (created) {
-	        request.getSession().setAttribute(Consts.MSG, "Cachorro cadastrado com sucesso");
-	        return Consts.REDIRECT_HOME;
-	    } 
-        
-	    request.getSession().setAttribute(Consts.ERROR, "Erro ao cadastrar cachorro");
-        return Consts.REDIRECT_ADD_DOG; 
+	    if (created) 
+	        request.getSession().setAttribute(Consts.MSG, Consts.ADD_DOG_SUCCESS);
+	    else
+	    	request.getSession().setAttribute(Consts.ERROR, Consts.ADD_DOG_ERROR);
+	    
+        return Consts.REDIRECT_ADD_DOG_JSP; 
 	}
 }

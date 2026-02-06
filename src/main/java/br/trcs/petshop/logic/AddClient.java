@@ -28,14 +28,14 @@ public class AddClient implements Logic {
 		
 		// Valida o cpf.
         if (!ValidationUtils.isValidCPF(cpf)) {
-        	request.getSession().setAttribute(Consts.ERROR, "CPF inválido");
-            return Consts.REDIRECT_ADD_CLIENT;
+        	request.setAttribute(Consts.ERROR, Consts.CPF_ERROR);
+            return Consts.ADD_CLIENT_JSP;
         }
         
         // Valida o email.
         if (!ValidationUtils.isValidEmail(email)) {
-        	request.getSession().setAttribute(Consts.ERROR, "E-mail inválido");
-            return Consts.REDIRECT_ADD_CLIENT;
+        	request.setAttribute(Consts.ERROR, Consts.EMAIL_ERROR);
+            return Consts.ADD_CLIENT_JSP;
         }
         
 		// Formata a data.
@@ -51,21 +51,17 @@ public class AddClient implements Logic {
 		ClientDAO dao = new ClientDAO();		
 		
 		if (dao.findByCpf(cpf) != null) {
-			request.getSession().setAttribute(Consts.ERROR, "Cliente já cadastrado");
-            return Consts.REDIRECT_ADD_CLIENT;
+			request.setAttribute(Consts.ERROR, Consts.CLIENT_ALREADY_ADDED_ERROR);
+            return Consts.ADD_CLIENT_JSP;
 		}
 		
 		boolean created = dao.create(newClient);
 		
-	    if (created) {
-	    	// Precisa acessar a sessão pois troca de página.
-	    	request.getSession().setAttribute(Consts.MSG, "Cliente cadastrado com sucesso");
-	        
-	        // Redireciona para a página inicial após o processamento.
-	        return Consts.REDIRECT_HOME;
-	    } 
+	    if (created) 
+	    	request.setAttribute(Consts.MSG, Consts.ADD_CLIENT_SUCCESS);
+	    else 
+	    	request.setAttribute(Consts.ERROR, Consts.ADD_CLIENT_ERROR);
 	    
-    	request.getSession().setAttribute(Consts.ERROR, "Erro ao cadastrar cliente");
-        return Consts.REDIRECT_ADD_CLIENT;
+        return Consts.ADD_CLIENT_JSP;
 	}
 }

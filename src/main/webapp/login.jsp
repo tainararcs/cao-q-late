@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ page import="br.trcs.petshop.utils.Consts" %>
 
-<jsp:include page="messages.jsp"/>
+<jsp:include page="${Consts.MESSAGES_JSP}"/>
 
 <!DOCTYPE html>
+
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Cão Q-Late - Login</title>
+		<title>Cão Q-Late - ${Consts.LOGIN_TITLE}</title>
 		
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 		<link rel="stylesheet" type="text/css" href="css/login.css">
@@ -23,7 +25,7 @@
 	   
 		<h1 class="title">Cão Q-Late</h1>
 		
-		<form method="post" action="controller" class="login">
+		<form method="post" action="${Consts.CONTROLLER}" class="login">
 			<div class="email">
 				<label for="email"><i class="bi bi-envelope-fill"></i> E-mail</label>
 				<input id="email" type="email" name="email" required>
@@ -34,8 +36,8 @@
 				<input id="password" type="password" name="password" required>
 			</div>
 			
-			<input type="hidden" name="logic" value="AuthAdmin">
-			<input type="submit" value="Login">
+			<input type="hidden" name="logic" value="${Consts.AUTH_ADMIN_LOGIC}">
+			<input type="submit" value="${Consts.LOGIN_BUTTON}">
 			
 			<div class="login-footer">Sistema de Gestão</div>
 		</form>

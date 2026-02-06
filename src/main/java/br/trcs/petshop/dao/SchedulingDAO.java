@@ -117,7 +117,7 @@ public class SchedulingDAO {
         String sql = "UPDATE schedulings SET status = ? WHERE id = ?";
         
         try (PreparedStatement stm = connection.prepareStatement(sql)) {
-            stm.setString(1, SchedulingStatus.fromStatus(newStatus.getStatus()).toString());
+            stm.setString(1, newStatus.toString());
             stm.setInt(2, idScheduling);
             
             int rowsUpdated = stm.executeUpdate();
