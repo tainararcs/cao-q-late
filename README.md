@@ -4,10 +4,15 @@ O **Cão Q-Late** é um sistema web criado para simplificar o controle de **agen
 
 O foco é a **organização e praticidade**, com uma interface limpa, intuitiva e poucos clicks, e um backend sólido feito em **Java**.
 
-<p align="center"> <img src="assets/home.png" width="1000" alt="Tela inicial do sistema"> </p>
-
+<div align="center">
+  <img src="assets/login.png" alt="cao-q-late">
+</div>
 
 ## Funcionalidades Principais
+
+<div align="center">
+  <img src="assets/home.png" alt="cao-q-late">
+</div>
 
 O sistema é voltado para uso interno do pet shop, permitindo que o administrador tenha acesso a:
 
@@ -39,6 +44,13 @@ O sistema é voltado para uso interno do pet shop, permitindo que o administrado
 - Paleta em **dourado escuro + branco**  
 - Ícones do **Bootstrap Icons**
 
+<div align="center">
+  <img src="assets/add.png" alt="cao-q-late">
+</div>
+
+<div align="center">
+  <img src="assets/list.png" alt="cao-q-late">
+</div>
 
 ## Tecnologias Principais e Requisitos:
 - Dynamic Web Project (Maven)
